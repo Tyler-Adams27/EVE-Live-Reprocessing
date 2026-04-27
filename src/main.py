@@ -9,10 +9,10 @@ height = 600
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setStyleSheet(global_style)
     window = MainWindow("EVE Repro")
     window.show()
     window.setBaseSize(width, height)
+    app.setStyleSheet(global_style)
     sys.exit(app.exec())
 
 
