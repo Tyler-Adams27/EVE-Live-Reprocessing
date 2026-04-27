@@ -1,6 +1,6 @@
 # Imports
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QPushButton, QPlainTextEdit, QSizePolicy
+from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QPushButton, QPlainTextEdit, QSizePolicy, QDoubleSpinBox
 from PyQt6.QtCore import Qt
 
 class MainWindow(QWidget):
@@ -8,24 +8,31 @@ class MainWindow(QWidget):
         super().__init__()
         self.setWindowTitle(title)
         layout = QGridLayout()
-
-        layout.setContentsMargins(100, 100, 100, 100)
         self.setLayout(layout)
         self.input = QPlainTextEdit()
-        self.input.setFixedWidth(500)
-        self.input.setFixedHeight(300)
-        self.input.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
-
-
+        self.input.setProperty("class", "text-input")
 
         submit = QPushButton("Submit")
         submit.clicked.connect(self.calc)
+        submit.setProperty("class", "submit-btn")
 
-        layout.addWidget(self.input, 1,1, Qt.AlignmentFlag.AlignCenter)
-        layout.addWidget(submit, 2,1, Qt.AlignmentFlag.AlignCenter)
+        self.percent = QDoubleSpinBox()
+        self.percent.setRange(0.0, 100.0)
+        self.percent.setSingleStep(0.01)
+        self.percent.setSuffix("%")
+        self.percent.setFixedWidth(100)
+
+        self.percent_label = QLabel("Enter your reprocessing percentage below:")
+
+        layout.addWidget(self.percent_label)
+        layout.addWidget(self.percent)
+        layout.addWidget(self.input)
+        layout.addWidget(submit)
+
 
     def calc(self):
         input_text = self.input.toPlainText()
+        percentage_input = self.percent.value()
         print(input_text)
 
   
