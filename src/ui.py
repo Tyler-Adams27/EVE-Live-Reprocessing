@@ -2,6 +2,8 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QPushButton, QPlainTextEdit, QSizePolicy, QDoubleSpinBox
 from PyQt6.QtCore import Qt
+from ores import *
+from popups import*
 
 class MainWindow(QWidget):
     def __init__(self, title):
@@ -22,9 +24,9 @@ class MainWindow(QWidget):
         self.percent.setSuffix("%")
         self.percent.setFixedWidth(100)
 
-        self.percent_label = QLabel("Enter your reprocessing percentage below:")
 
-        layout.addWidget(self.percent_label)
+
+
         layout.addWidget(self.percent)
         layout.addWidget(self.input)
         layout.addWidget(submit)
@@ -33,6 +35,12 @@ class MainWindow(QWidget):
     def calc(self):
         input_text = self.input.toPlainText()
         percentage_input = self.percent.value()
+
+        if input_text not in ORES:
+            not_found(self,input_text)
+
+
+
         print(input_text)
 
   
