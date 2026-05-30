@@ -1,4 +1,6 @@
-#!/Users/t.a/Documents/GitHub/EVE-Live-Reprocessing/.venv/bin/python3.12
+#!/bin/sh
+'''exec' "/Users/t.a/Documents/Personal Projects/Github/EVE-Live-Reprocessing/.venv/bin/python" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
